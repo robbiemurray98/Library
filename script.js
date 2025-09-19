@@ -2,9 +2,47 @@ const myLibrary = [];
 
 
 // constructor allows books objects to be created easily
-function Book(name) {
-    this.name = name;
+// function Book(name) {
+//     this.name = name;
+// }
+
+
+
+
+
+// Book.prototype.toggleRead = function() {
+//     if(myObj.read === 'yes'){
+//         myObj['read'] = 'no';
+//         node5.nodeValue = 'no';
+
+//     } else if(myObj.read === 'no'){
+//         myObj['read'] = 'yes';
+//         node5.nodeValue = 'yes';
+
+//     }
+
+
+// }
+
+
+
+ class Book {
+    constructor(name, author, pages, genre, read) {
+        this.name = name;
+        this.author = author;
+        this.pages = pages;
+        this.genre = genre;
+        this.read = read;
+        this.id = crypto.randomUUID();
+
+    }
+
+
+
+
+    
 }
+
 
 let theCreativeAct = new Book('The Creative Act');
 let eastOfEden = new Book('East of Eden');
@@ -14,17 +52,11 @@ let eastOfEden = new Book('East of Eden');
 // manipulate book object then store in array
 
 
-function addBookToLibrary(author, book, pages, genre, read){
-    book.author = author
-    book.pages = pages;
-    book.genre = genre;
-    book.read = read;
-    book.id = crypto.randomUUID();
-
+function addBookToLibrary(book){
     myLibrary.push(book);
 
-
 }
+
 
 // addBookToLibrary('Rick Rubin', theCreativeAct, 250, 'non-fiction', 'Yes');
 // addBookToLibrary('John Steinbeck', eastOfEden, 450, 'fiction', 'Yes');
@@ -107,17 +139,19 @@ function capitalizeAfterChar(str, charToFollow) {
 let onSubmit = document.querySelector('#on-submit');
 // create event listener for submit button
 onSubmit.addEventListener('click', () => {
-    let authorName = document.querySelector('#author_name');
-    let bookName = document.querySelector('#book_name');
-    let numPages = document.querySelector('#num_of_pages');
-    let genre = document.querySelector('#genre')
-    let read = document.querySelector('#read');
-    let bookNameValue = bookName.value;
+    let bookName = document.querySelector('#book_name').value;
+    let authorName = document.querySelector('#author_name').value;
+    let numPages = document.querySelector('#num_of_pages').value;
+    let genre = document.querySelector('#genre').value;
+    let read = document.querySelector('#read').value;
+    // let bookNameValue = bookName.value;
 
 
-    let a = new Book(bookNameValue);
+    let a = new Book(bookName, authorName, numPages, genre, read);
 
-    addBookToLibrary(authorName.value, a, numPages.value, genre.value, read.value);
+    addBookToLibrary(a);
+
+
 
     let element = document.getElementById('div1');
     // element.appendChild(div)
@@ -170,26 +204,26 @@ onSubmit.addEventListener('click', () => {
 
 // add a function on book prototype 
 
-let myObj = myLibrary[myLibrary.length - 1]
 
 
-Book.prototype.toggleRead = function() {
-    if(myObj.read === 'yes'){
-        myObj['read'] = 'no';
-        node5.nodeValue = 'no';
 
-    } else if(myObj.read === 'no'){
-        myObj['read'] = 'yes';
-        node5.nodeValue = 'yes';
 
+
+let myObj = myLibrary[myLibrary.length - 1];
+
+Book.prototype.toggleRead = function(){
+        if(myObj.read === 'yes'){
+            myObj['read'] = 'no';
+            node5.nodeValue = 'no';
+        } else if (myObj.read === 'no'){
+            myObj['read'] = 'yes';
+            node5.nodeValue = 'yes';
+        }
     }
 
 
-}
-
-
 toggleReadButton.addEventListener('click', () => {
-    myObj.toggleRead();
+   myObj.toggleRead();
    
 })
 
