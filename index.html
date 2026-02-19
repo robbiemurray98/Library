@@ -24,24 +24,25 @@
     
     <dialog id="modal">
         <div class="form-container">
-            <form id="my-form">
+            <form id="my-form" novalidate>
                 <div><legend>Add New Book</legend></div>
                 <div class="input-container">
                     <div>
                         <label for="author_name">Author Name</label>
-                        <input type="text" id="author_name" name="authorname">
+                        <input type="text" id="author_name" name="author_name" required>
+                        <span class="error" aria-live="polite"></span>
                     </div>
                     <div>
                         <label for="book_name">Book Name</label>
-                        <input type="text" id="book_name" name="bookname">
+                        <input type="text" id="book_name" name="book_name">
                     </div>
                     <div>
                         <label for="num_of_pages">Number of Pages</label>
-                        <input type="text" id="num_of_pages" name="pagenum">
+                        <input type="text" id="num_of_pages" name="page_num">
                     </div>
                     <div>
                         <label for="genre">Genre</label>
-                        <input type="text" id="genre" name="bgenre">
+                        <input type="text" id="genre" name="b_genre">
                     </div>
                     <div>
                         <label for="read">Read?</label>
@@ -49,7 +50,7 @@
                     </div>
                 </div>
             </form>
-            <button id="on-submit">Submit</button>
+            <button type="submit" id="on-submit" form="my-form">Submit</button>
         </div>
         <button id="modal-close-button">X</button>
     </dialog>

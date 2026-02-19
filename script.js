@@ -125,9 +125,9 @@ addBookButton.addEventListener('click', () => {
 
 let modalClose = document.querySelector('#modal-close-button');
 
-modalClose.addEventListener('click', () => {
-    modal.close();
-})
+// modalClose.addEventListener('click', () => {
+//     modal.close();
+// })
 
 // makes character after 'space' upper case
 function capitalizeAfterChar(str, charToFollow) {
@@ -258,6 +258,46 @@ toggleReadButton.addEventListener('click', () => {
 
 
 });
+
+
+// create error message first name
+const authorName = document.querySelector('#author_name');
+const myForm = document.querySelector('#my-form');
+const nameError = document.querySelector('#author_name + span.error');
+
+authorName.addEventListener('input', (event) => {
+    if(authorName.validity.valid){
+    nameError.textContent = '';
+    nameError.className = 'error';
+    } else {
+        showError();
+    };
+})
+// reloads after submit
+
+myForm.addEventListener('submit', (event) => {
+
+    if(!authorName.validity.valid){
+        console.log('author name is not valid on submit')
+        showError();
+        event.preventDefault();
+
+    } else {
+        event.preventDefault();
+        myForm.reset()
+        modal.close();
+    }
+
+});
+
+function showError() {
+    if(authorName.validity.valueMissing){
+        nameError.textContent = 'Please enter the author name!';
+    }
+
+    nameError.className = 'error active'
+}
+
 
 
 
