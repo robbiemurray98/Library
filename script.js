@@ -265,7 +265,7 @@ const authorName = document.querySelector('#author_name');
 const myForm = document.querySelector('#my-form');
 const nameError = document.querySelector('#author_name + span.error');
 
-authorName.addEventListener('input', (event) => {
+authorName.addEventListener('input', () => {
     if(authorName.validity.valid){
     nameError.textContent = '';
     nameError.className = 'error';
